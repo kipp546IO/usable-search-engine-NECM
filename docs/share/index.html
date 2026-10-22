@@ -8,27 +8,42 @@
   body{display:flex;align-items:center;justify-content:center;background:#fbf9f4;
        font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#1A2B3C}
   #msg{font-size:20px;letter-spacing:.08em}
-  #box{display:none;margin-top:16px}
-  textarea{width:min(86vw,520px);height:64px;font-size:14px;padding:8px;border:1px solid #d8d2c4;border-radius:8px;background:#fff}
+  #btn{display:none;margin-top:14px;padding:9px 26px;font-size:14px;border:0;border-radius:20px;
+       background:#1A2B3C;color:#fbf9f4;cursor:pointer}
+  #btn:hover{background:#24405a}
 </style>
 <div style="text-align:center">
   <div id="msg">…</div>
-  <div id="box"><textarea id="ta" readonly></textarea></div>
+  <button id="btn" type="button">复制</button>
 </div>
 <script>
 const TEXT = '【可用的搜索引擎-网易云】https://github.com/kipp546IO/usable-search-engine-NECM';
 const msg = document.getElementById('msg');
-function fallback(){
-  msg.textContent = '按 Ctrl+C 复制';
-  const box = document.getElementById('box');
-  const ta = document.getElementById('ta');
-  ta.value = TEXT; box.style.display = 'block'; ta.focus(); ta.select();
+const btn = document.getElementById('btn');
+
+function ok() { msg.textContent = '复制成功'; btn.style.display = 'none'; }
+function ask() { msg.textContent = ''; btn.style.display = 'inline-block'; }
+
+function legacyCopy() {
+  const ta = document.createElement('textarea');
+  ta.value = TEXT; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  let done = false;
+  try { done = document.execCommand('copy'); } catch (e) { done = false; }
+  document.body.removeChild(ta);
+  return done;
 }
-if (navigator.clipboard && window.isSecureContext) {
-  navigator.clipboard.writeText(TEXT).then(() => { msg.textContent = '复制成功'; },
-    () => fallback());
-} else {
-  fallback();
+
+function copy() {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(TEXT).then(() => { ok(); return true; })
+      .catch(() => { legacyCopy() ? ok() : ask(); return false; });
+  }
+  legacyCopy() ? ok() : ask();
+  return Promise.resolve(false);
 }
+
+copy();
+btn.addEventListener('click', () => { copy(); });
 </script>
 </html>
