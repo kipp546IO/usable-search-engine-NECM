@@ -219,9 +219,12 @@
   #sharePanel{position:relative;margin:-6px 0 10px;background:var(--card);border:1px solid var(--line);
         border-radius:10px;padding:10px 12px;box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:20;font-size:12.5px}
   #sharePanel .shrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
-  #sharePanel .shrow button,#sharePanel .shrow a{border:1px solid var(--line);background:var(--card);
-        color:var(--text);border-radius:8px;padding:4px 12px;font-size:12px;cursor:pointer;text-decoration:none}
-  #sharePanel .shrow button:hover,#sharePanel .shrow a:hover{border-color:var(--accent);color:var(--accent)}
+  #sharePanel .shgrid{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 6px}
+  #sharePanel .shi{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;
+        color:var(--dim);font-size:11px;cursor:pointer}
+  #sharePanel .shi img{width:38px;height:38px;border-radius:50%;transition:transform .15s ease}
+  #sharePanel .shi:hover img{transform:translateY(-2px) scale(1.06)}
+  #sharePanel .shi:hover{color:var(--accent)}
   #sharePanel .cw{color:var(--dim);line-height:1.6}
   /* 结果内二次筛选 */
   .refilter{display:flex;gap:8px;align-items:center;margin:-4px 0 10px;flex-wrap:wrap}
@@ -264,16 +267,20 @@
   </div>
   <div id="sharePanel" style="display:none">
     <b>分享这个工具</b>
-    <div class="shrow">
-      <button type="button" id="shCopy">复制项目链接</button>
-      <a id="shQQ" target="_blank" rel="noopener">QQ</a>
-      <a id="shWeibo" target="_blank" rel="noopener">微博</a>
-      <a id="shX" target="_blank" rel="noopener">X</a>
-      <a id="shTG" target="_blank" rel="noopener">Telegram</a>
+    <div class="shgrid">
+      <a class="shi" data-sh="copy"><img src="share/wechat.svg" alt="微信"><span>微信</span></a>
+      <a class="shi" id="shQQ2" target="_blank" rel="noopener"><img src="share/qq.svg" alt="QQ"><span>QQ</span></a>
+      <a class="shi" id="shQZ" target="_blank" rel="noopener"><img src="share/qzone.svg" alt="QQ空间"><span>QQ空间</span></a>
+      <a class="shi" id="shWB2" target="_blank" rel="noopener"><img src="share/weibo.svg" alt="微博"><span>微博</span></a>
+      <a class="shi" id="shTB" target="_blank" rel="noopener"><img src="share/tieba.svg" alt="贴吧"><span>贴吧</span></a>
+      <a class="shi" data-sh="copy"><img src="share/xiaohongshu.svg" alt="小红书"><span>小红书</span></a>
+      <a class="shi" data-sh="copy"><img src="share/lofter.svg" alt="LOFTER"><span>LOFTER</span></a>
+      <a class="shi" data-sh="copy"><img src="share/instagram.svg" alt="Instagram"><span>Instagram</span></a>
+      <a class="shi" id="shX2" target="_blank" rel="noopener"><img src="share/x.svg" alt="X"><span>X</span></a>
+      <a class="shi" id="shTG2" target="_blank" rel="noopener"><img src="share/telegram.svg" alt="Telegram"><span>Telegram</span></a>
     </div>
-    <div class="cw">分享出去的是**项目主页**，别人点开就能下载。<br>
-      微信 / Lofter / 小红书 不支持网页直接跳转：点「复制项目链接」粘过去即可。<br>
-      <button type="button" class="mini" id="shCopySearch" style="margin-top:6px">复制当前搜索链接（只在本机有效）</button></div>
+    <div class="cw">点图标：能直接跳的会打开分享页；微信 / 小红书 / LOFTER / Instagram 会复制项目链接，粘过去就行。</div>
+  </div>
   </div>
   <div id="histPanel" style="display:none">
     <div class="hist-head"><span>搜索历史</span><button type="button" id="histClear">清空</button></div>
@@ -1253,12 +1260,12 @@ function openShare(){
   const url = REPO_URL;
   const title = '能用的搜索引擎：把被算法藏起来的结果，按自己的规则重新排一遍';
   const u = encodeURIComponent(url), tt = encodeURIComponent(title);
-  $('#shQQ').href = 'https://connect.qq.com/widget/shareqq/index.html?url=' + u + '&title=' + tt;
-  $('#shWeibo').href = 'https://service.weibo.com/share/share.php?url=' + u + '&title=' + tt;
-  $('#shX').href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + tt;
-  $('#shTG').href = 'https://t.me/share/url?url=' + u + '&text=' + tt;
-  $('#shCopy').dataset.url = url;
-  $('#shCopySearch').dataset.url = shareQueryUrl();
+  $('#shQQ2').href = 'https://connect.qq.com/widget/shareqq/index.html?url=' + u + '&title=' + tt;
+  $('#shQZ').href = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + u + '&title=' + tt;
+  $('#shWB2').href = 'https://service.weibo.com/share/share.php?url=' + u + '&title=' + tt;
+  $('#shTB').href = 'https://tieba.baidu.com/f/commit/share/openShareApi?url=' + u + '&title=' + tt;
+  $('#shX2').href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + tt;
+  $('#shTG2').href = 'https://t.me/share/url?url=' + u + '&text=' + tt;
 }
 
 /* ---------- 清缓存 ---------- */
@@ -1285,9 +1292,8 @@ async function copyText(text, tip){
   try{ await navigator.clipboard.writeText(text); alert(tip); }
   catch(e){ prompt('复制这个链接：', text); }
 }
-$('#shCopy').addEventListener('click', () => copyText($('#shCopy').dataset.url || REPO_URL, '项目链接已复制'));
-$('#shCopySearch').addEventListener('click', () =>
-  copyText($('#shCopySearch').dataset.url || shareQueryUrl(), '搜索链接已复制（只在你本机有效）'));
+document.querySelectorAll('#sharePanel .shi[data-sh=copy]').forEach(el =>
+  el.addEventListener('click', (e) => { e.preventDefault(); copyText(REPO_URL, '项目链接已复制，去粘贴吧'); }));
 $('#cacheBtn').addEventListener('click', () => toggleCache());
 $('#cacheClose').addEventListener('click', () => toggleCache(false));
 $('#cacheSrv').addEventListener('click', () => clearServerCache(false));
