@@ -1,4 +1,4 @@
-# 能用的搜索引擎（usable-search-engine）
+# 能用的搜索引擎（usable-search-engine-NECM）网易云版
 
 > 本仓库是 **网易云版**：只保留网易云搜索功能（歌名 / 歌词 / 专辑 / 歌手 / 歌单 / 播客）。
 
