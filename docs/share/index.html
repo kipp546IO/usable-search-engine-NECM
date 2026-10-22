@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>分享</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{display:flex;align-items:center;justify-content:center;background:#fbf9f4;
+       font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#1A2B3C}
+  #msg{font-size:20px;letter-spacing:.08em}
+  #box{display:none;margin-top:16px}
+  textarea{width:min(86vw,520px);height:64px;font-size:14px;padding:8px;border:1px solid #d8d2c4;border-radius:8px;background:#fff}
+</style>
+<div style="text-align:center">
+  <div id="msg">…</div>
+  <div id="box"><textarea id="ta" readonly></textarea></div>
+</div>
+<script>
+const TEXT = '【可用的搜索引擎-网易云】https://github.com/kipp546IO/usable-search-engine-NECM';
+const msg = document.getElementById('msg');
+function fallback(){
+  msg.textContent = '按 Ctrl+C 复制';
+  const box = document.getElementById('box');
+  const ta = document.getElementById('ta');
+  ta.value = TEXT; box.style.display = 'block'; ta.focus(); ta.select();
+}
+if (navigator.clipboard && window.isSecureContext) {
+  navigator.clipboard.writeText(TEXT).then(() => { msg.textContent = '复制成功'; },
+    () => fallback());
+} else {
+  fallback();
+}
+</script>
+</html>

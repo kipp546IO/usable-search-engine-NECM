@@ -215,19 +215,6 @@
   .landing button{padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);
         color:var(--sub);font-size:12.5px;cursor:pointer}
   .landing button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-  /* 分享面板 */
-  #sharePanel{position:relative;margin:-6px 0 10px;background:var(--card);border:1px solid var(--line);
-        border-radius:10px;padding:10px 12px;box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:20;font-size:12.5px}
-  #sharePanel .shrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
-  #sharePanel .shbig{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);cursor:pointer}
-  #sharePanel .shbig img{width:46px;height:46px;border-radius:50%;transition:transform .15s ease}
-  #sharePanel .shbig span{font-size:14px;line-height:1.2}
-  #sharePanel .shbig em{display:block;font-style:normal;font-size:11px;color:var(--dim);letter-spacing:.5px}
-  #sharePanel .shbig:hover img{transform:translateY(-2px) scale(1.05)}
-  #sharePanel .shbig:hover{color:var(--accent)}
-  #toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(12px);background:#1A2B3C;color:#fff;
-        padding:9px 20px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:all .2s ease;z-index:99}
-  #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
   /* 结果内二次筛选 */
   .refilter{display:flex;gap:8px;align-items:center;margin:-4px 0 10px;flex-wrap:wrap}
   .refilter input{flex:1;max-width:420px;padding:7px 11px;font-size:13px;border:1px solid var(--line);
@@ -253,7 +240,6 @@
     <button type="submit" class="btn" id="go">搜索</button>
     <button type="button" class="btn ghost" id="histBtn" title="最近的搜索（存在本机浏览器，不上传）">历史</button>
     <button type="button" class="btn ghost" id="cacheBtn" title="清缓存：知道清了什么再点">清缓存</button>
-    <button type="button" class="btn ghost" id="shareBtn" title="把这次搜索分享出去">分享</button>
   </form>
   <div id="cachePanel" style="display:none">
     <b>清缓存会清掉什么</b>
@@ -267,17 +253,7 @@
     <button type="button" id="cacheHist">只清搜索历史</button>
     <button type="button" id="cacheClose">关闭</button>
   </div>
-  <div id="sharePanel" style="display:none">
-    <a class="shbig" id="shCopyAll" title="复制分享文案">
-      <img src="share/share.svg" alt="分享">
-      <span>分享<em>Share</em></span>
-    </a>
-    <div class="cw">点一下，把「【网易云音乐搜索引擎】项目链接」复制到剪贴板。</div>
-  </div>
-    <div class="cw">点图标：能直接跳的会打开分享页；微信 / 小红书 / LOFTER / Instagram 会复制项目链接，粘过去就行。</div>
-  </div>
-  </div>
-  <div id="histPanel" style="display:none">
+<div id="histPanel" style="display:none">
     <div class="hist-head"><span>搜索历史</span><button type="button" id="histClear">清空</button></div>
     <div id="histList"></div>
   </div>
@@ -1234,36 +1210,6 @@ $('#histList').addEventListener('click', (ev) => {
   runSearch(b.dataset.q);
 });
 
-/* ---------- 分享 ---------- */
-const REPO_URL = 'https://github.com/kipp546IO/usable-search-engine-NECM';
-const SHARE_TEXT = '【网易云音乐搜索引擎】' + REPO_URL;
-function shareQueryUrl(){
-  const sp = new URLSearchParams();
-  sp.set('src', state.src);
-  if(state.src === 'netease'){ sp.set('type', state.nettype); if(state.ndur) sp.set('dur', state.ndur);
-    if(state.npub) sp.set('pub', state.npub); if(state.nsort) sp.set('sort', state.nsort);
-    if(state.nvip) sp.set('vip', state.nvip); if(state.norig) sp.set('orig', state.norig); }
-  else { sp.set('type', state.bimode); if(state.bdur) sp.set('bdur', state.bdur); if(state.bpub) sp.set('bpub', state.bpub);
-    if(state.border) sp.set('order', state.border); }
-  if(state.lastQ) sp.set('q', state.lastQ);
-  return location.origin + location.pathname + '?' + sp.toString();
-}
-function openShare(){
-  const p = $('#sharePanel');
-  const open = p.style.display === 'none';
-  p.style.display = open ? '' : 'none';
-  if(!open) return;
-  const url = REPO_URL;
-  const title = '能用的搜索引擎：把被算法藏起来的结果，按自己的规则重新排一遍';
-  const u = encodeURIComponent(url), tt = encodeURIComponent(title);
-  $('#shQQ2').href = 'https://connect.qq.com/widget/shareqq/index.html?url=' + u + '&title=' + tt;
-  $('#shQZ').href = 'https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + u + '&title=' + tt;
-  $('#shWB2').href = 'https://service.weibo.com/share/share.php?url=' + u + '&title=' + tt;
-  $('#shTB').href = 'https://tieba.baidu.com/f/commit/share/openShareApi?url=' + u + '&title=' + tt;
-  $('#shX2').href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + tt;
-  $('#shTG2').href = 'https://t.me/share/url?url=' + u + '&text=' + tt;
-}
-
 /* ---------- 清缓存 ---------- */
 function toggleCache(force){
   const p = $('#cachePanel');
@@ -1283,18 +1229,6 @@ async function clearServerCache(withLyrics){
   }catch(e){ alert('清缓存失败：服务可能没在跑'); }
   toggleCache(false);
 }
-$('#shareBtn').addEventListener('click', openShare);
-function toast(msg){
-  const el = $('#toast'); if(!el) return;
-  el.textContent = msg; el.classList.add('on');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => el.classList.remove('on'), 1600);
-}
-async function copyText(text, tip){
-  try{ await navigator.clipboard.writeText(text); toast(tip); }
-  catch(e){ prompt('复制这段文字：', text); }
-}
-$('#shCopyAll').addEventListener('click', (e) => { e.preventDefault(); copyText(SHARE_TEXT, '复制成功'); });
 $('#cacheBtn').addEventListener('click', () => toggleCache());
 $('#cacheClose').addEventListener('click', () => toggleCache(false));
 $('#cacheSrv').addEventListener('click', () => clearServerCache(false));
@@ -1381,6 +1315,5 @@ renderSubrow();
 
 renderFilters();
 </script>
-  <div id="toast"></div>
 </body>
 </html>

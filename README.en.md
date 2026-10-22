@@ -8,10 +8,14 @@
 ![platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
 ![version](https://img.shields.io/badge/version-v0.1.0-orange)
 
-<p align="center">
-  <a href="docs/SHARE.md" title="点开复制分享文案"><img src="docs/share/share.svg" width="56" height="56" alt="分享"></a>
-  <br><sub>分享 / Share</sub>
-</p>
+<div align="center">
+<table>
+<tr>
+<td align="center" valign="middle"><a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip"><img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20%E7%82%B9%E8%BF%99%E9%87%8C%E4%B8%8B%E8%BD%BD%20ZIP-%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8-2ea44f?style=for-the-badge" alt="Download ZIP"></a></td>
+<td align="center" valign="middle"><a href="https://kipp546IO.github.io/usable-search-engine-NECM/share/"><img src="docs/share/arrow.svg" width="52" height="52" alt="Share"></a><br><sub>分享功能</sub></td>
+</tr>
+</table>
+</div>
 
 ## Fighting the algorithm
 
