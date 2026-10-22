@@ -16,14 +16,10 @@
 
 <p align="center"><sub>下载后解压 → 双击 <code>install.cmd</code> → 浏览器自动打开。不需要装别的东西。</sub></p>
 
-<div align="center">
-<table>
-<tr><td align="center" width="20%"><a href="docs/share/wechat-qr.png"><img src="docs/share/wechat.svg" width="56" height="56" alt="微信"></a><br><sub>微信</sub></td><td align="center" width="20%"><a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/qq.svg" width="56" height="56" alt="QQ"></a><br><sub>QQ</sub></td><td align="center" width="20%"><a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88&amp;summary=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/qzone.svg" width="56" height="56" alt="QQ空间"></a><br><sub>QQ空间</sub></td><td align="center" width="20%"><a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/weibo.svg" width="56" height="56" alt="微博"></a><br><sub>微博</sub></td><td align="center" width="20%"><a href="https://tieba.baidu.com/f/commit/share/openShareApi?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/tieba.svg" width="56" height="56" alt="贴吧"></a><br><sub>贴吧</sub></td></tr>
-<tr><td align="center" width="20%"><a href="docs/SHARE.md"><img src="docs/share/xiaohongshu.svg" width="56" height="56" alt="小红书"></a><br><sub>小红书</sub></td><td align="center" width="20%"><a href="docs/SHARE.md"><img src="docs/share/lofter.svg" width="56" height="56" alt="LOFTER"></a><br><sub>LOFTER</sub></td><td align="center" width="20%"><a href="docs/SHARE.md"><img src="docs/share/instagram.svg" width="56" height="56" alt="Instagram"></a><br><sub>Instagram</sub></td><td align="center" width="20%"><a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;text=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/x.svg" width="56" height="56" alt="X"></a><br><sub>X</sub></td><td align="center" width="20%"><a href="https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;text=%E8%83%BD%E7%94%A8%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%20%C2%B7%20%E7%BD%91%E6%98%93%E4%BA%91%E7%89%88"><img src="docs/share/telegram.svg" width="56" height="56" alt="Telegram"></a><br><sub>Telegram</sub></td></tr>
-</table>
-</div>
-
-<p align="center"><sub>微信扫码打开 · 小红书 / LOFTER / Instagram 点开是现成文案，复制粘贴即可</sub></p>
+<p align="center">
+  <a href="docs/SHARE.md" title="点开复制分享文案"><img src="docs/share/share.svg" width="56" height="56" alt="分享"></a>
+  <br><sub>分享 / Share</sub>
+</p>
 
 <h2 align="center">对抗算法与推荐</h2>
 

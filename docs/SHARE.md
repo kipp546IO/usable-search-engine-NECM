@@ -1,6 +1,10 @@
-# 分享文案
+# 分享
 
-> 把下面任意一段复制走，粘到小红书 / LOFTER / Instagram / 微信就行。链接是同一个。
+点右上角的复制按钮，把下面这段直接粘到微信 / QQ / 小红书 / LOFTER / Instagram：
+
+```
+【网易云音乐搜索引擎】https://github.com/kipp546IO/usable-search-engine-NECM
+```
 
 ---
 

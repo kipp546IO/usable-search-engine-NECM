@@ -219,13 +219,15 @@
   #sharePanel{position:relative;margin:-6px 0 10px;background:var(--card);border:1px solid var(--line);
         border-radius:10px;padding:10px 12px;box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:20;font-size:12.5px}
   #sharePanel .shrow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
-  #sharePanel .shgrid{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 6px}
-  #sharePanel .shi{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;
-        color:var(--dim);font-size:11px;cursor:pointer}
-  #sharePanel .shi img{width:38px;height:38px;border-radius:50%;transition:transform .15s ease}
-  #sharePanel .shi:hover img{transform:translateY(-2px) scale(1.06)}
-  #sharePanel .shi:hover{color:var(--accent)}
-  #sharePanel .cw{color:var(--dim);line-height:1.6}
+  #sharePanel .shbig{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);cursor:pointer}
+  #sharePanel .shbig img{width:46px;height:46px;border-radius:50%;transition:transform .15s ease}
+  #sharePanel .shbig span{font-size:14px;line-height:1.2}
+  #sharePanel .shbig em{display:block;font-style:normal;font-size:11px;color:var(--dim);letter-spacing:.5px}
+  #sharePanel .shbig:hover img{transform:translateY(-2px) scale(1.05)}
+  #sharePanel .shbig:hover{color:var(--accent)}
+  #toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(12px);background:#1A2B3C;color:#fff;
+        padding:9px 20px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:all .2s ease;z-index:99}
+  #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
   /* 结果内二次筛选 */
   .refilter{display:flex;gap:8px;align-items:center;margin:-4px 0 10px;flex-wrap:wrap}
   .refilter input{flex:1;max-width:420px;padding:7px 11px;font-size:13px;border:1px solid var(--line);
@@ -266,19 +268,12 @@
     <button type="button" id="cacheClose">关闭</button>
   </div>
   <div id="sharePanel" style="display:none">
-    <b>分享这个工具</b>
-    <div class="shgrid">
-      <a class="shi" data-sh="copy"><img src="share/wechat.svg" alt="微信"><span>微信</span></a>
-      <a class="shi" id="shQQ2" target="_blank" rel="noopener"><img src="share/qq.svg" alt="QQ"><span>QQ</span></a>
-      <a class="shi" id="shQZ" target="_blank" rel="noopener"><img src="share/qzone.svg" alt="QQ空间"><span>QQ空间</span></a>
-      <a class="shi" id="shWB2" target="_blank" rel="noopener"><img src="share/weibo.svg" alt="微博"><span>微博</span></a>
-      <a class="shi" id="shTB" target="_blank" rel="noopener"><img src="share/tieba.svg" alt="贴吧"><span>贴吧</span></a>
-      <a class="shi" data-sh="copy"><img src="share/xiaohongshu.svg" alt="小红书"><span>小红书</span></a>
-      <a class="shi" data-sh="copy"><img src="share/lofter.svg" alt="LOFTER"><span>LOFTER</span></a>
-      <a class="shi" data-sh="copy"><img src="share/instagram.svg" alt="Instagram"><span>Instagram</span></a>
-      <a class="shi" id="shX2" target="_blank" rel="noopener"><img src="share/x.svg" alt="X"><span>X</span></a>
-      <a class="shi" id="shTG2" target="_blank" rel="noopener"><img src="share/telegram.svg" alt="Telegram"><span>Telegram</span></a>
-    </div>
+    <a class="shbig" id="shCopyAll" title="复制分享文案">
+      <img src="share/share.svg" alt="分享">
+      <span>分享<em>Share</em></span>
+    </a>
+    <div class="cw">点一下，把「【网易云音乐搜索引擎】项目链接」复制到剪贴板。</div>
+  </div>
     <div class="cw">点图标：能直接跳的会打开分享页；微信 / 小红书 / LOFTER / Instagram 会复制项目链接，粘过去就行。</div>
   </div>
   </div>
@@ -1241,6 +1236,7 @@ $('#histList').addEventListener('click', (ev) => {
 
 /* ---------- 分享 ---------- */
 const REPO_URL = 'https://github.com/kipp546IO/usable-search-engine-NECM';
+const SHARE_TEXT = '【网易云音乐搜索引擎】' + REPO_URL;
 function shareQueryUrl(){
   const sp = new URLSearchParams();
   sp.set('src', state.src);
@@ -1288,12 +1284,17 @@ async function clearServerCache(withLyrics){
   toggleCache(false);
 }
 $('#shareBtn').addEventListener('click', openShare);
-async function copyText(text, tip){
-  try{ await navigator.clipboard.writeText(text); alert(tip); }
-  catch(e){ prompt('复制这个链接：', text); }
+function toast(msg){
+  const el = $('#toast'); if(!el) return;
+  el.textContent = msg; el.classList.add('on');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => el.classList.remove('on'), 1600);
 }
-document.querySelectorAll('#sharePanel .shi[data-sh=copy]').forEach(el =>
-  el.addEventListener('click', (e) => { e.preventDefault(); copyText(REPO_URL, '项目链接已复制，去粘贴吧'); }));
+async function copyText(text, tip){
+  try{ await navigator.clipboard.writeText(text); toast(tip); }
+  catch(e){ prompt('复制这段文字：', text); }
+}
+$('#shCopyAll').addEventListener('click', (e) => { e.preventDefault(); copyText(SHARE_TEXT, '复制成功'); });
 $('#cacheBtn').addEventListener('click', () => toggleCache());
 $('#cacheClose').addEventListener('click', () => toggleCache(false));
 $('#cacheSrv').addEventListener('click', () => clearServerCache(false));
@@ -1380,5 +1381,6 @@ renderSubrow();
 
 renderFilters();
 </script>
+  <div id="toast"></div>
 </body>
 </html>
