@@ -8,13 +8,26 @@
 ![platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
 ![version](https://img.shields.io/badge/version-v0.1.0-orange)
 
-<p align="center">
-  <a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip">
-    <img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20Download%20ZIP-one%20click-2ea44f?style=for-the-badge" alt="Download ZIP">
-  </a>
-</p>
+<table>
+<tr>
+<td valign="middle">
 
-<p align="center"><sub>Unzip → double-click <code>install.cmd</code> → the browser opens. Nothing else to install.</sub></p>
+<a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip"><img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20%E7%82%B9%E8%BF%99%E9%87%8C%E4%B8%8B%E8%BD%BD%20ZIP-%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8-2ea44f?style=for-the-badge" alt="下载 ZIP"></a>
+
+<sub>Unzip → double-click <code>install.cmd</code> → the browser opens. Nothing else to install.</sub>
+
+</td>
+<td align="right" valign="middle">
+
+<sub>Share →</sub><br>
+<a href="https://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=Usable%20Search%20Engine%20%C2%B7%20NetEase%20edition"><img src="https://img.shields.io/badge/QQ-12B7F5?style=for-the-badge&amp;logo=tencentqq&amp;logoColor=white" alt="QQ"></a>
+<a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;title=Usable%20Search%20Engine%20%C2%B7%20NetEase%20edition"><img src="https://img.shields.io/badge/%E5%BE%AE%E5%8D%9A-E6162D?style=for-the-badge&amp;logo=sinaweibo&amp;logoColor=white" alt="微博"></a>
+<a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;text=Usable%20Search%20Engine%20%C2%B7%20NetEase%20edition"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&amp;logo=x&amp;logoColor=white" alt="X"></a>
+<a href="https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2Fkipp546IO%2Fusable-search-engine-NECM&amp;text=Usable%20Search%20Engine%20%C2%B7%20NetEase%20edition"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&amp;logo=telegram&amp;logoColor=white" alt="Telegram"></a>
+
+</td>
+</tr>
+</table>
 
 ## Fighting the algorithm
 
