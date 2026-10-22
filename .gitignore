@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# 抓取数据 / 索引库（绝不入库）
+data/
+*.sqlite3
+*.db
+
+# 环境与编辑器
+.env
+.idea/
+.vscode/
+.DS_Store
+
+# 测试运行产物
+tests/.run/
+tests/last_run.json
+
+# 服务日志
+logs/
+tests/last_run_bili.json
+
+# 临时抓取结果（绝不入库）
+/o1.json
+/nd.json
+/smoke.json
+/fz.json
+/u1.json
+/u2.json
+/p1.json
+/p2.json
+/p3.json

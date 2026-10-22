@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "usable-search-engine"
+version = "0.1.0"
+description = "能用的搜索引擎——替代被算法操控的平台搜索（网易云 / 哔哩哔哩）"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+# 只用 Python 标准库：urllib / sqlite3 / http.server / json / threading。
+# 装的时候不需要下载任何第三方包（早期草稿残留的 fastapi/uvicorn/jieba 已删）。
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
