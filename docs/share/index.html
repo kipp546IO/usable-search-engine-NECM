@@ -21,7 +21,8 @@ const TEXT = '【可用的搜索引擎-网易云】https://github.com/kipp546IO/
 const msg = document.getElementById('msg');
 const btn = document.getElementById('btn');
 
-function ok() { msg.textContent = '复制成功'; btn.style.display = 'none'; }
+function ok() { msg.textContent = '复制成功'; btn.style.display = 'none';
+  setTimeout(() => { try { window.close(); } catch (e) {} }, 900); }
 function ask() { msg.textContent = ''; btn.style.display = 'inline-block'; }
 
 function legacyCopy() {
