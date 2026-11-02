@@ -13,7 +13,7 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" valign="middle"><a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip"><img src="docs/share/download.svg" width="420" height="48" alt="点这里下载 ZIP"></a></td>
+<td align="center" valign="middle"><a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip"><img src="docs/share/download.png" width="420" height="48" alt="点这里下载 ZIP"></a></td>
 <td align="center" valign="middle"><a href="https://kipp546IO.github.io/usable-search-engine-NECM/share/" target="_blank" rel="noopener"><img src="docs/share/arrow.svg" width="52" height="52" alt="分享"></a><br><sub>分享功能</sub></td>
 </tr>
 </table>
