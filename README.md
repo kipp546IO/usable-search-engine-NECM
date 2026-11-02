@@ -10,14 +10,11 @@
 
 中文 · [English](README.en.md)
 
-<div align="center">
-<table>
-<tr>
-<td align="center" valign="middle"><a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip"><img src="docs/share/download.png" width="420" height="48" alt="点这里下载 ZIP"></a></td>
-<td align="center" valign="middle"><a href="https://kipp546IO.github.io/usable-search-engine-NECM/share/" target="_blank" rel="noopener"><img src="docs/share/arrow.svg" width="52" height="52" alt="分享"></a><br><sub>分享功能</sub></td>
-</tr>
-</table>
-</div>
+<h3 align="center">
+<a href="https://github.com/kipp546IO/usable-search-engine-NECM/releases/download/v0.1.0/usable-search-netease-v0.1.0.zip">⬇️ 点这里下载 ZIP · 一键启动</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://kipp546IO.github.io/usable-search-engine-NECM/share/">↗ 分享功能</a>
+</h3>
 
 <p align="center"><sub>下载后解压 → 双击 <code>install.cmd</code> → 浏览器自动打开。不需要装别的东西。</sub></p>
 
