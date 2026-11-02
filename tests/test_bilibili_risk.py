@@ -70,7 +70,46 @@ def test_uid_api_exposes_risk_control() -> None:
                 pass
 
 
+def test_probe_records_risk_as_failure() -> None:
+    """-352 是 HTTP 200 的风控码，探针不能记成成功。"""
+    import io
+
+    calls: list[tuple[str, dict]] = []
+    original_urlopen = bilibili.urllib.request.urlopen
+    original_probe = bilibili._probe
+
+    class FakeResp(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+    def fake_urlopen(url, timeout=0, **kwargs):
+        return FakeResp(json.dumps({"code": -352, "message": "风控校验失败"}).encode())
+
+    bilibili.urllib.request.urlopen = fake_urlopen
+    bilibili._probe = lambda endpoint, **kw: calls.append((endpoint, kw))
+    try:
+        try:
+            bilibili._request("https://api.bilibili.com/x/web-interface/search/type?q=x", tries=1)
+        except bilibili.RiskControlError:
+            pass
+        else:
+            raise AssertionError("风控码应抛 RiskControlError")
+    finally:
+        bilibili.urllib.request.urlopen = original_urlopen
+        bilibili._probe = original_probe
+
+    assert calls, "探针没有落记录"
+    _, kw = calls[0]
+    assert kw.get("ok") is False, f"风控被记成成功: {kw}"
+    assert kw.get("risk") is True, f"风控位没置: {kw}"
+    assert kw.get("code") == "-352", f"code 不对: {kw}"
+
+
 if __name__ == "__main__":
     test_user_info_exposes_risk_control()
     test_uid_api_exposes_risk_control()
+    test_probe_records_risk_as_failure()
     print("[bilibili-risk] PASS")

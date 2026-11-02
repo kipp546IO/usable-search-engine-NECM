@@ -35,6 +35,9 @@ _wbi_cache: dict = {"key": None, "ts": 0.0}
 _cookie_cache: dict = {"value": None}
 
 
+_RISK_CODES = (-352, -412, -799)
+
+
 class RiskControlError(RuntimeError):
     """B站风控（-352/-412/-799）：接口暂时不可用，过一会儿再试。"""
 
@@ -90,8 +93,15 @@ def _request(url: str, timeout: int = 20, tries: int = 3, headers: dict | None =
             req = urllib.request.Request(url, headers=h)
             with urllib.request.urlopen(req, timeout=timeout) as resp:  # nosec B310 —— scheme 已白名单
                 payload = json.loads(resp.read().decode("utf-8", "replace"))
+            # 风控是 HTTP 200 + code=-352，不能当成功
+            code = payload.get("code") if isinstance(payload, dict) else None
+            if isinstance(code, int) and code in _RISK_CODES:
+                _probe(endpoint, ok=False, code=str(code), ms=_elapsed_ms(t0), risk=True)
+                raise RiskControlError(f"code={code} msg={payload.get('message')!r}")
             _probe(endpoint, ok=True, ms=_elapsed_ms(t0))
             return payload
+        except RiskControlError:
+            raise
         except Exception as exc:  # noqa: BLE001
             last = exc
             time.sleep(1.5)
